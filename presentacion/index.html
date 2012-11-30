@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>PHP en una hora</title>
+        <meta name="description" content="Breve introduccion a PHP y ajax">
+        <meta name="author" content="Jesús Rodriguez Pérez">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' +
+                ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+            .reveal h1,.reveal h2,.reveal h3,.reveal h4{
+                text-shadow: 0 1px 0 #FFFFFF;
+                color: rgba(0, 0, 0, 0.8);
+            }
+            ol.twocols{
+                column-count: 2;
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                -o-column-count: 2;
+                width: 90%;
+            }
+            .key{
+                background: none repeat scroll 0 0 #FFFFFF;
+                border-radius: 10px 10px 10px 10px;
+                color: #000000;
+                display: inline-block;
+                font: 13px/30px 'Molengo';
+                letter-spacing: 0;
+                margin: 0 8px !important;
+                padding: 2px 10px!important;
+                position: relative;
+                text-shadow: none;
+                vertical-align: sub;
+            }
+
+            aside.notes{
+                position: absolute;
+                top:0;
+                width: 100%;
+                height: 100%;
+                padding: 1em;
+                font-size: 0.8em;
+                text-align: left;
+                white-space: pre-line;
+                background: #333;
+                border: #444;
+            }
+
+            pre.result{
+                /*background-color: #333;*/
+                background-color: #fff;
+                padding: 5px;
+            }
+
+            .pre 
+            {
+                position: relative;
+                width: 60%;
+                background: #ddd;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+                padding: 2em 1.5em;
+                color: rgba(0,0,0, .8);
+                text-shadow: 0 1px 0 #fff;
+                line-height: 1.5;
+                margin: 60px auto;
+            }
+
+
+            pre:before, pre:after 
+            {
+                z-index: -1; 
+                position: absolute; 
+                content: "";
+                bottom: 15px;
+                left: 10px;
+                width: 50%; 
+                top: 80%;
+                max-width:400px;
+                background: rgba(0, 0, 0, 0.7); 
+                -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
+                -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+                box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+                -webkit-transform: rotate(-3deg);    
+                -moz-transform: rotate(-3deg);   
+                -o-transform: rotate(-3deg);
+                -ms-transform: rotate(-3deg);
+                transform: rotate(-3deg);
+            }
+
+            pre:after 
+            {
+                -webkit-transform: rotate(3deg);
+                -moz-transform: rotate(3deg);
+                -o-transform: rotate(3deg);
+                -ms-transform: rotate(3deg);
+                transform: rotate(3deg);
+                right: 10px;
+                left: auto;
+            }
+        </style>
+        <style media="only screen and (max-width: 480px)">
+            ol.twocols{
+                column-count: 1;
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                -o-column-count: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <section>
+                        <h1>PHP</h1>
+                        <h3>En una hora</h3>
+                        <p>
+                            <small><a href="http://jesusnoseq.com">Jesús Rodríguez Pérez</a> / 
+                                <a href="http://twitter.com/jesusnoseq">@jesusnoseq</a></small>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Controles</h3>
+                        <p>Puedes navegar con <span class="key">→</span> y <span class="key">espacio</span>.</p>
+                        <p>Con <span class="key">Ctrl</span>+<span class="key">click</span> puedes hacer zoom.</p>
+                        <p><span class="key">Esc</span> para ver un overview de la presentación.</p>
+                        <p><span class="key">d</span> para mostrar las notas.</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Índice de contenidos</h2>
+                    <ol class="twocols">
+                        <li><a href="#/2">¿Qué es PHP?</a></li>
+                        <li><a href="#/3">¿Por qué usarlo?</a></li>
+                        <li><a href="#/4">Instalación</a></li>
+                        <li><a href="#/5">IDEs</a></li>
+                        <li><a href="#/6">Otras herramientas útiles</a></li>
+                        <li><a href="#/7">Hola mundo</a></li>
+                        <li><a href="#/8">Comentarios</a></li>
+                        <li><a href="#/9">Variables</a></li>
+                        <li><a href="#/10">Constantes</a></li>
+                        <li><a href="#/11">Operadores</a></li>
+                        <li><a href="#/12">Cadenas de caracteres</a></li>
+                        <li><a href="#/13">Arrays</a></li>
+                        <li><a href="#">Funciones</a></li>
+                        <li><a href="#">Formularios</a></li>
+                        <li><a href="#">Formularios seguros</a></li>
+                        <li><a href="#">Mysql</a></li>
+                        <li><a href="#">Mysql de forma segura</a></li>
+                        <li><a href="#">Include y Require</a></li>
+                        <li><a href="#">Ajax</a></li>
+                        <li><a href="#">jQuery y Ajax</a></li>
+                        <li><a href="#">Aplicación de ejemplo</a></li>
+                    </ol>
+                </section>
+                <section>
+                    <h2>¿Que es PHP?</h2>
+                    <blockquote cite="http://www.php.net/manual/es/intro-whatis.php">
+                        PHP (acrónimo de PHP: Hypertext Preprocessor) es un lenguaje 
+                        de código abierto muy popular especialmente adecuado para 
+                        desarrollo web y que puede ser incrustado en HTML. 
+                    </blockquote>
+                    <br/>
+                    <p class="fragment fade-in">Interpretado y No tipado</p>
+                </section>
+                <section>
+                    <h2>¿Por qué usarlo?</h2>
+                    <ol>
+                        <li class="fragment fade-in">Realmente facil de aprender</li>
+                        <li class="fragment fade-in">Barato</li>
+                        <li class="fragment fade-in">Open Source</li>
+                        <li class="fragment fade-in">Portable</li>
+                        <li class="fragment fade-in">Soporta POO y la mayoría de SGBD</li>
+                        <li class="fragment fade-in">Existen un monton de librerias, frameworks y CMS</li>
+                    </ol>
+                    <aside class="notes">Barato -> La mayoría de los servidores compartidos solo soportan php
+                        Librerias -> ya existen un monton de librerias para cualquier cosa. Ej: hacer pdf's
+                        Muchas APIS solo estan hechas en PHP
+                        frameworks -> symfony2, zend, kohana, cakePHP, Yii, CodeIgniter...
+                        CMS -> joomla, drumpal y wordpress estan hechos en php
+                        Lo usan Facebook, wikipedia, Yahoo!...
+                    </aside>
+                </section>
+                <section>
+                    <h2>Instalación</h2>
+                    <p>Hay una infinidad de formas de empezar a trabajar con PHP</p>
+                    <ul>
+                        <li>Instalar <a href="http://php.net/">PHP</a>, 
+                            <a href="http://www.apache.org/">Apache</a>, 
+                            <a href="http://www.mysql.com/">Mysql</a> por separado
+                        </li>
+                        <li>Servidor web embebido.<br/> <code>php -S localhost:8080</code></li>
+                        <li>
+                            <a href="http://www.apachefriends.org/es/xampp.html">XAMPP</a>,
+                            <a href="http://www.linuxhispano.net/2011/04/08/instalar-lamp-en-ubuntu-11-04/">LAMP</a>,
+                            <a href="http://www.wampserver.com/en/">WAMP</a> <a href="http://www.easyphp.org/">(EasyPHP)</a>,
+                            <a href="http://www.mamp.info">MAMP</a>
+                        </li>
+                        <li>Servidor portable: MoWeS, <a href="http://www.server2go-web.de/">server2go</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>IDEs</h2>
+                    <ul>
+                        <li><a href="http://netbeans.org/">NetBeans</a></li>
+                        <li><a href="http://www.aptana.com/">Apatana (eclipse)</a></li>
+                        <li><a href="http://www.eclipse.org/projects/project.php?id=tools.pdt">PDT (eclipse)</a></li>
+                        <li><a href="http://www.geany.org/Geany">Geany</a></li>
+                        <li><a href="http://www.jetbrains.com/phpstorm/">PhpStorm</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Otras herramientas útiles</h2>
+                    <ul>
+                        <li><a href="https://addons.mozilla.org/es/firefox/collections/mozilla/webdeveloper/">Extensiones para firefox</a></li>
+                        <li><a href="https://chrome.google.com/webstore/search-extensions/webdev?hl=es">Extensiones para Chrome</a></li>
+                        <li>Git (control de versiones) - <a href="https://github.com/">GitHub</a>  <a href="https://bitbucket.org/">Bitbucket</a></li>
+                        <li>MySQL - <a href="http://www.mysql.com/products/workbench/">MySQL Workbenc</a>  <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Hola mundo</h2>
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta http-equiv="Content-Type" 
+            content="text/html; charset=UTF-8"&gt;
+        &lt;title&gt;PHP en una hora&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;?php
+           echo 'Hello wordl!';
+        ?&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                </section>
+                <section>
+                    <h2>Comentarios</h2>
+                    <pre><code>&lt;?php 
+    //comentarios de  linea
+    # otra forma de comentar
+    /*
+        De varias lineas
+     */
+
+    /**   Comentario de documentacion
+     * Constructor - Register administration header.
+     *
+     * @since 3.0.0
+     * @param callback $admin_header_callback
+     * @return Custom_Background
+     */
+?&gt;</code></pre>
+                </section>
+                <section>
+                    <h2>Variables</h2>
+                    <pre><code contenteditable>&lt;?php
+            $a; // no inicializada(NULL)
+            echo gettype($a);
+            $a = 10; //le asignamos un entero
+            echo gettype($a);
+            $a = "10"; // le asignamos un string
+            echo gettype($a);
+            $a = array(); // ahora es un array
+            echo gettype($a);
+            $a = new DOMEntity(); // ahora es un objeto
+            echo gettype($a);
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+NULL
+integer
+string
+array
+object</pre>
+                </section>
+                <section>
+                    <h2>Constantes</h2>
+                    <pre><code contenteditable>&lt;?php
+            define(PI, 3.14);
+            const TITLE = "PHP1h";
+            echo PI;
+            echo TITLE;
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result" contenteditable>
+3.14
+PHP1h</pre>
+                    <p>También existen las 
+                        <a href="http://es2.php.net/manual/en/language.constants.predefined.php">constantes Mágicas.</a>
+                    </p>
+                </section>
+
+
+                <section>
+                    <h2>Operadores</h2>
+                    <img width="500" src="img/PHP_OperatorPrecedence-Manual.png" alt="Operadores de PHP"/>
+                    <p><a href="http://es2.php.net/manual/es/language.operators.precedence.php">
+                            Precedencia de operadores</a></p>
+                </section>
+
+                <section>
+                    <h2>Cadenas de carácteres</h2>
+                    <pre><code>&lt;?php
+            $a = &quot; &lt;b&gt;hola&lt;/b&gt; &quot;;
+
+            echo $a . '-&gt;' . htmlspecialchars ($a).&quot;\n&quot;;
+            
+            echo 'Logitud: '.strlen($a).&quot;\n&quot;;
+            echo 'Logitud sin espacios:'.strlen(trim($a)).&quot;\n&quot;;
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+hola -> <b>hola</b> 
+Logitud: 13
+Logitud aplicando trim: 11</pre>
+                </section>
+                <section>
+                    <h2>Comillas simples y dobles</h2>
+                    <pre><code>&lt;?php
+    $foo=10;
+    echo "valor: $foo \n";
+    echo 'valor: $foo \n';
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+valor: 10
+valor: $foo \n</pre>
+                </section>
+                <section>
+                    <h2>Comparaciones</h2>
+                    <h4>¿igual o idéntico?</h4>
+                    <pre><code>&lt;?php
+    $a=10;
+    $b='10';
+
+    echo '¿Son iguales con ==? '. ($a==$b);
+    echo '¿Son idénticos con ===? '. ($b===$a); 
+    $b=(int)$b; 
+    echo 'Y ahora ¿son idénticos con ===? '. ($b===$a);
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+¿Son iguales con ==? 1
+¿Son idénticos con ===?
+Y ahora ¿son idénticos con ===? 1</pre>
+                    <p class="fragment fade-in">También existe !== (no idéntico)</p>
+                </section>
+
+                <section>
+                    <h2>Arrays</h2>
+                    <pre><code>&lt;?php
+    $items[] = 1; // indice implicito
+    $items[5] = 2; // indice explicito
+    $items['key'] = 3; // asociativo
+    $items[] = array(true, null, 23, "foo");
+    $items['key'] = array('k' => 'valor1', 0 => 'woala');
+    echo $items['key'][0];
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result fragment fade-in">woala</pre>
+                </section>
+
+                <section>
+                    <h2>Funciones de Arrays</h2>
+                    <pre><code>&lt;?php
+    // JSON (JavaScript Object Notation)
+    // transforma un cadena de caracteres en noctacion json
+    // a un array asociativo
+    $items= json_decode('{"name":"root", "password":"123456"}'
+        ,true);
+    if( is_array($items) ){ // si es un array
+        //numero de elementos del array
+        echo 'Numero de elementos: '.count($items);
+        //imprimir un array
+        print_r($items);
+    }
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+    Numero de elementos: 2
+    Array ( [name] => root [password] => 123456 )</pre>
+                    <p class="fragment fade-in">
+                        Existen multitud de funciones para arrays<br/>
+                        <a href="http://es1.php.net/manual/es/book.array.php">Manual de php - Arrays</a>
+                    </p>
+                </section>
+                <section>
+                    <h2>Variables superglobales</h2>
+                    <ul>
+                        <li><strong>$GLOBALS</strong></li>
+                        <li><strong>$_GET</strong></li>
+                        <li><strong>$_POST</strong></li>
+                        <li><strong>$_FILES</strong></li>
+                        <li><strong>$_COOKIE</strong></li>
+                        <li><strong>$_SESSION</strong></li>
+                        <li><strong>$_REQUEST</strong></li>
+                        <li><strong>$_ENV</strong></li>
+                    </ul>
+                    <p><a href="http://www.php.net/manual/es/language.variables.superglobals.php">
+                            Variables superglobals - Manual de PHP
+                        </a></p>
+                </section>
+
+                <section>
+                    <h2>Estructuras de control</h2>
+                    <h3>if, else, elseif/else if</h3>
+                    <pre><code>&lt;?php
+$a=0;
+if($a){
+    echo $a;
+}else if( isset($a) ){
+    echo '$a esta definida';
+}else{
+    echo '$a no existe';
+}
+
+// forma abreviada
+echo ( date('H') < 12 ) ? 'Good morning!' : 'Good afternoon!';
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">
+$a esta definida
+Good afternoon!</pre>
+                </section>
+                <section>
+                    <h2>Estructuras de control</h2>
+                    <h3>Switch</h3>
+                    <pre><code>&lt;?php
+// dia de la semana abreviado en tres letras
+$dia = date('D');
+$dia = strtoupper($dia): // lo paso a mayusculas
+echo $dia;
+switch ( $dia ){
+    case 'SUN': echo 'Domingo';     break;
+    case 'MON': echo 'Lunes';       break;
+    case 'TUE': echo 'Martes';      break;
+                    ...
+}
+?&gt;</code></pre>    <!--case 'WED': echo 'Miércoles';   break;
+    case 'THU': echo 'Jueves';      break;
+    case 'FRI': echo 'Viernes';     break;
+    case 'SAT': echo 'Sábado';      break;-->
+                    <h4>Resultado</h4>
+                    <pre class="result">
+Sun
+Domingo</pre>
+                    <p>¡Se pueden usar cadenas de caracteres!</p>
+                </section>
+                <section>
+                    <h2>Estructuras de control</h2>
+                    <h3>Bucles</h3>
+                    <pre><code>&lt;?php
+$array=range(0,1000); // crea un array de 0 a 1000
+$len=count($array); // numero de elementos del array
+
+for($i=0; $i<$len; $i++){
+    $array[$i] = $array[$i]*10;
+}
+
+do{
+    $key = key($array);
+    $array[$key] =  current($array) *10;
+}while( next($array) );
+reset($array);
+
+foreach ($array as $key => $value){
+    $array[$key] = $value*10;
+} 
+?&gt;</code></pre>
+                </section>
+                <section>
+                    <h2>Estructuras de control</h2>
+                    <h3>include, include_once</h3>
+                    <h3>require, require_once</h3>
+                    <pre><code contenteditable>&lt;?php
+    require_once 'connect_DB.php';
+?&gt;</code></pre>
+                    <ul>
+                        <li><strong>include </strong> incluye y evalúa el archivo especificado.</li>
+                        <li><strong>include_once</strong> igual que include pero solo añade el fichero una vez.</li>
+                        <li><strong>require</strong> igual que include pero si falla produce un error que para la ejecución del script.</li>
+                        <li><strong>require_once</strong> igual que require pero solo añade el fichero una vez.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Objetos</h2>
+                    <pre><code>&lt;?php
+class Animal {
+    var $patas;
+    private $habitat;
+
+    static function planeta() {
+        return "Tierra";
+    }
+    protected function setHabitat($habitat) {
+        $this->habitat = $habitat;
+    }
+    public function getHabitat() {
+        return $this->habitat;
+    }
+}
+
+class Gato extends Animal {
+    private $nombre;
+
+    function __construct($nombre, $patas = 4) {
+        $this->nombre = $nombre;
+        $this->patas = $patas;
+    }
+    public function setHabitat($habitat) {
+        parent::setHabitat($habitat);
+    }
+    public function getNombre() {
+        return $this->nombre;
+    }
+}
+
+$michifu = new Gato("Michifu");
+echo 'El gato '.$michifu->getNombre().' tiene '.$michifu->patas.
+    ' patas y es de la '.Gato::planeta();
+?&gt;</code></pre>
+                    <h4>Resultado</h4>
+                    <pre class="result">El gato Michifu tiene 4 patas y es del planeta Tierra</pre>
+                </section>
+
+                <section>
+                    <h2>Formularios</h2>
+
+                    <pre><code>&lt;form method="post" action="&lt;?php echo $_SERVER['PHP_SELF'] ?&gt;"&gt;
+ &lt;input name="var" /&gt;
+ &lt;input type="submit" /&gt;
+&lt;/form&gt;
+&lt;?php
+ echo 'Por POST: '.$_POST['var'];
+ echo 'Por GET: '.$_GET['var'];
+?&gt;</code></pre>
+                    <p class="fragment fade-in">¡¡Cuidado!! <br/>
+                        <span class="fragment fade-in">¿Qué pasaría si meto codigo HTML?</span><br/>
+                        <span class="fragment fade-in">¿Y si meto codigo JavaScript?</span><br/>
+                        <span class="fragment fade-in">¿Y PHP?</span>
+                    </p>
+
+                    <pre class="fragment fade-in"><code>&lt;?php
+    // Convierte caracteres especiales en entidades HTML
+    echo htmlspecialchars($_POST['var']);
+    // Limpia etiquetas HTML y PHP
+    echo strip_tags($_POST['var']);
+?&gt;</code></pre>    
+                </section>
+
+                <section>
+                    <h2>APIs para MySQL</h2>
+                    <ul>
+                        <li>Extensión mysql</li>
+                        <li>PDO MySQL</li>
+                        <li>Extensión mysqli</li>
+                        <!--<li>+ ORMs (Doctrine)</li>-->
+                    </ul>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <blockquote cite="http://www.php.net/manual/es/mysqlinfo.api.choosing.php">
+                        El rendimiento global de las tres extensiones se considera el mismo.
+                    </blockquote>
+                    <!-- No indica que version de php usa :S
+                    <p class="fragment fade-in"><a href="http://www.tufuncion.com/select-mysqli-pdo-php">En realidad no.</a></p>
+                    -->
+                </section>
+
+                <section>
+                    <h2>Preparación</h2>
+                    <pre><code>&lt;?php
+$tablaSQL = &lt;&lt;&lt;TABLASQL
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR( 200 ) NOT NULL ,
+        password VARCHAR( 200 ) NOT NULL ,
+        UNIQUE (name)
+    ) ENGINE = InnoDB DEFAULT CHARSET=utf8
+TABLASQL;
+
+// MySQL settings
+// MySQL database name
+define('DB_NAME', 'php1h');
+// MySQL database username
+define('DB_USER', 'root');
+// MySQL database password
+define('DB_PASSWORD', '');
+// MySQL hostname
+define('DB_HOST', 'localhost');
+// Database Charset
+define('DB_CHARSET', 'utf8');
+?&gt;</code></pre>
+                </section>
+
+                <section>
+                    <h2>Extensión mysql</h2>
+                    <pre><code>&lt;?php
+// conexion
+$mysql = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)
+        or die("Error while connecting to database");
+mysql_select_db(DB_NAME, $mysql)
+        or die("Error while select database");
+mysql_set_charset(DB_CHARSET);
+
+// consulta
+$pass=$_GET['pass']; // dato de un formulario por ejemplo
+$sql = "select id, name, password 
+        from usuarios 
+        where password like '$pass'";
+$result = mysql_query($sql, $mysql) or die(mysql_error());
+
+// resultado
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+    $matriz[] = $row;
+}
+print_r($matriz);
+
+// liberacion de recursos
+mysql_free_result($result);
+mysql_close($mysql);
+unset($matriz);
+?&gt;</code></pre>
+                    <p class="fragment fade-in">¿ Y si <code>$_GET['pass']</code> vale <code>'%'</code> ?
+                        <span class="fragment fade-in"> Hay que filtrar</span>
+                    </p>
+                    <code class="fragment fade-in">$pass=mysql_real_escape_string($_GET['pass']);</code>
+                </section>
+                <section>
+                    <h2>PDO MySQL</h2>
+                    <pre><code>&lt;?php
+// conexion
+$opt = array(
+    PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND =&gt; "SET NAMES ".DB_CHARSET
+);
+// Mas constantes en http://es2.php.net/manual/es/pdo.constants.php
+try {
+    $pdo = new PDO("mysql:host=".DB_HOST."; dbname=".DB_NAME,
+                                DB_USER, DB_PASSWORD, $opt);
+} catch (PDOException $e) {
+    echo 'Falló la conexión: ' . $e->getMessage();
+}
+
+// consulta
+$sql = "select id, name, password 
+        from usuarios 
+        where password like ".$pdo->quote($_GET['pass']);
+$result = $pdo-&gt;query($sql);
+
+// resultado
+$matriz = $result-&gt;fetchAll(PDO::FETCH_ASSOC); /* PDO::FETCH_CLASS */
+print_r($matriz);
+
+// liberacion de recursos
+$result = null;
+$pdo = null;
+unset($matriz);
+?&gt;</code></pre>
+                </section>
+                <section>
+                    <h2>Extensión mysqli</h2>
+                    <pre><code>&lt;?php
+// conexion
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+if ($mysqli-&gt;connect_errno) {
+    echo "Failed to connect to MySQL: (".$mysqli->connect_errno.")".
+        $mysqli-&gt;connect_error;
+    $mysqli-&gt;set_charset(DB_CHARSET);
+}
+
+// consulta
+$pass = $mysqli-&gt;real_escape_string($_GET['pass']);
+$sql = "select id, name, password 
+        from usuarios 
+        where password like '$pass'";
+$result = $mysqli-&gt;query($sql);
+
+// resultados
+// $result-&gt;fetchAll();
+while ($row = $result-&gt;fetch_assoc()) {
+    $matriz[] = $row;
+}
+print_r($matriz);
+
+// liberacion de recursos
+$result-&gt;free();
+$mysqli-&gt;close();
+unset($matriz);
+?&gt;</code></pre>
+                </section>
+                <section>
+                    <h3>Resultado de la consulta</h3>
+                    <pre class="result">
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => user1
+            [password] => 123
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [name] => Jesús
+            [password] => 123
+        )
+}
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>Sesiones</h2>
+                    <pre><code>&lt;?php // Cada vez que visitamos la página se aumenta el contador.
+// iniciamos la sesion
+session_start();
+// si la variable de sesion counter no esta definida
+if (!isset($_SESSION['counter'])) {
+  // la inicializamos a 0
+  $_SESSION['counter'] = 0;
+} else {
+  //si ya estaba definida la incrementamos
+  $_SESSION['counter']++;
+}
+?&gt;</code></pre>
+                    <!--<p>Cada vez que visitamos la página se aumenta el contador.</p>-->
+                    <p>Otras funciones útiles</p>
+                    <ul>
+                        <li><code>session_destroy()</code> para destruir la sesión.</li>
+                        <li><code>session_regenerate_id()</code> regenera el id de sesión.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Aplicacion de ejemplo</h2>
+                    <h3>Librerias</h3>
+                    <aside  class="notes">No he querido usar frameworks, pero si he usado 
+                        librerías para proteger de algunos ataques la aplicación
+                    </aside>
+                </section>
+                <section>
+                    <h2>Para seguir aprendiendo</h2>
+                    <ul>
+                        <li><a href="http://www.php.net/manual/es/">Manual de PHP en español.</a></li>
+                        <li><a href="http://es.phptherightway.com/">PHP La Manera Correcta.</a></li>
+                        <li><a href="https://github.com/codeguy/php-the-right-way/wiki/Frameworks">Lista de framworks de PHP.</a></li>
+                        <li><a href="http://www.phpclasses.org/">PHPclasses</a> - Directorio de librerías de PHP.</li>
+                        <li><a href="http://code.google.com/p/inspekt/">Inspekt</a> - Librería para sanitizar datos.</li>
+                        <li><a href="http://www.fpdf.org/">FPDF</a> - permite generar documentos pdf.</li>
+                        <li><a href="http://phperror.net/">PHP Error</a> - muestra mensajes error faciles de entender.</li>
+                        <li><a href="http://stefangabos.ro/php-libraries/zebra-session/">Zebra_Session</a> - wrapper para el manejo de sesiones usando mysql como almacen.</li>
+                        <li><a href="http://www.doctrine-project.org/">Doctrine</a> - un ORM para PHP.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>¿Hay que usar un framework para desarrollar en PHP?</h2>
+                    <p>No es absolutamente necesario usar un framework, 
+                        pero ayuda, te permite desarrollar más rapido, 
+                        aplicaciones más seguras y faciles de mantener.</p>
+                    <p>El problema es solo aprender y elegir un framework.</p>
+                </section>
+                <section>
+                    <h2><a href="http://symfony.com/">Symfony2</a></h2>
+                    <p>Framework open source para desarrollo de aplicaciones web en PHP.</p>
+                    <ul>
+                        <li>Es bastante popular. →<a href="http://symfohub.com/">más plugins.</a></li>
+                        <li>Tiene una buena documentación, en inglés.</li>
+                        <li>MVC.</li>
+                        <li>Compatible con la mayoria de SGBD.</li>
+                        <li>Twig como motor de plantillas por defecto.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Ajax</h2>
+                    <blockquote cite="http://es.wikipedia.org/wiki/AJAX">Acrónimo de Asynchronous JavaScript And XML es una técnica de desarrollo 
+                        web para crear aplicaciones interactivas.</blockquote>
+                    <p>Es una combinación de tecnologías ya existentes: <br/>
+                        <a href="http://es.wikipedia.org/wiki/XHTML">XHTML</a>, 
+                        <a href="http://es.wikipedia.org/wiki/Hojas_de_estilos_en_cascada">CSS</a>, 
+                        <a href="http://es.wikipedia.org/wiki/Document_Object_Model">DOM</a>, 
+                        <a href="http://es.wikipedia.org/wiki/XMLHttpRequest">XMLHttpRequest</a> y 
+                        <a href="http://es.wikipedia.org/wiki/XML">XML</a></p>
+                    <a href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications" title="Ajax: A New Approach to Web Applications - Jesse James Garrett">
+                        Artículo en el que presentó el término AJAX por primera vez (2005)</a>
+                </section>
+                <section>
+                    <h2>Ajax</h2>
+                    <img width="500" title="Comparación del modelo tradicional con el de AJAX. Imagen creada por Adaptive Path." src="img/ajax-fig1_small.png" />
+                </section>
+                <section>
+                    <h2>Ajax</h2>
+                    <img width="350" title="Comparación entre las comunicaciones síncronas tradicionales y las comunicaciones asíncronas (AJAX). Imagen creada por Adaptive Path." src="img/ajax-fig2_small.png" />
+                </section>
+               <!-- <section>
+                    <h2>Ajax sin jQuery</h2>
+                    <pre><code>
+function inicializa_xhr() {
+  if(window.XMLHttpRequest) {
+    return new XMLHttpRequest();
+  }
+  else if(window.ActiveXObject) {
+    return new ActiveXObject("Microsoft.XMLHTTP");
+  }
+}
+
+peticion_http = inicializa_xhr();
+
+if(peticion_http) {
+  peticion_http.onreadystatechange = funcion;
+  peticion_http.open("GET", url, true);
+  peticion_http.send(null);
+}</code></pre>
+                </section>-->
+                
+   <section>
+                    <h2>Ajax con jQuery (PHP)</h2>
+<pre><code>
+&lt;?php
+function isAJAX() {
+    return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; 
+        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
+        'xmlhttprequest');
+}
+
+if (isAJAX()) {
+    $offset = (int) strip_tags($_GET['offset']);
+    $date = new DateTime();
+    $date-&gt;modify (&quot;+{$offset} hours&quot;);
+    $info['time'] = $date-&gt;format('H:i:s');
+    $info['msg'] = &quot;Es una petici&Atilde;&sup3;n AJAX!&quot;;
+    echo json_encode($info);
+    exit();
+}
+?&gt;</code></pre>
+                </section>
+                <section>
+                    <h2  class="fade-in">Ajax con jQuery (JavaScript)</h2>
+                    <pre><code>&lt;!-- Utiliza jQuery del CDN de Google. Utiliza el jQuery local si es necesario --&gt;
+&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;!window.jQuery &amp;&amp; document.write('&lt;script src=&quot;js/jquery-1.8.3.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
+&lt;script&gt;
+    $(document).ready(function(){
+        $('#gettime').click(getTime);
+    });
+
+    function getTime(event){
+        event.preventDefault();
+        event.stopPropagation();
+
+        var offset = $('#offset').val();
+
+        $.getJSON(&quot;ajaxExample.php&quot;, {offset: offset}, function(json){
+            $('#resquest').html(json.msg+'('+json.time+')');
+            //console.log(json);
+        });
+
+        /* $.getJSON is a shorthand of $.ajax
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            data: data,
+            success: callback
+        });
+        */
+    }
+&lt;/script&gt;</code></pre>
+                </section>
+                <section>
+                    <h2  class="fade-in">Ajax con jQuery (HTML)</h2>
+                    <pre><code>&lt;form&gt;
+    &lt;fieldset&gt;&lt;legend&gt;AJAX&lt;/legend&gt;
+        &lt;label for=&quot;offset&quot;&gt;&lt;/label&gt;
+        &lt;input id=&quot;offset&quot; type=&quot;number&quot; value =&quot;4&quot;/&gt;
+        &lt;input type=&quot;submit&quot; id=&quot;gettime&quot; value=&quot;Get Time&quot;&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;div id=&quot;resquest&quot;&gt;&lt;/div&gt;</code></pre>
+                </section>
+                <section>
+                    <h2  class="fade-in">¿Preguntas?</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script type="text/javascript">
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                //default/sky/beige/night/simple/serif
+                theme: 'beige', //Reveal.getQueryHash().theme, // available themes are in /css/theme
+                // default/cube/page/concave/zoom/linear/none
+                transition: 'concave', //Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    //{ src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+            document.addEventListener( 'keydown', function( event ) {
+                if( event.keyCode =='68'){
+                    var notes=document.getElementsByTagName('aside');
+                    for(x in notes){
+                        var note=notes[x];
+                        if(note.style && note.className==="notes"){
+                            note.style.display = (note.style.display == 'none') ? 'block' : 'none';
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
