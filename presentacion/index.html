@@ -37,9 +37,10 @@
                 -o-column-count: 2;
                 width: 90%;
             }
-            .key{
+            div.slides .key{
                 background: none repeat scroll 0 0 #FFFFFF;
                 border-radius: 10px 10px 10px 10px;
+                border: 1px #000 solid;
                 color: #000000;
                 display: inline-block;
                 font: 13px/30px 'Molengo';
@@ -48,7 +49,8 @@
                 padding: 2px 10px!important;
                 position: relative;
                 text-shadow: none;
-                vertical-align: sub;
+                vertical-align: top;
+                /*vertical-align: sub;*/
             }
 
             aside.notes{
@@ -116,6 +118,12 @@
                 right: 10px;
                 left: auto;
             }
+            
+            div.slides figure img{
+                padding: 10px;
+                background: #fff;
+                border: 3px #686868 solid;
+            }
         </style>
         <style media="only screen and (max-width: 480px)">
             ol.twocols{
@@ -134,6 +142,7 @@
                     <section>
                         <h1>PHP</h1>
                         <h3>En una hora</h3>
+                        <figure><img class="" title="Mascota de PHP" src="img/elephpant.png"/></figure>
                         <p>
                             <small><a href="http://jesusnoseq.com">Jesús Rodríguez Pérez</a> / 
                                 <a href="http://twitter.com/jesusnoseq">@jesusnoseq</a></small>
@@ -145,6 +154,11 @@
                         <p>Con <span class="key">Ctrl</span>+<span class="key">click</span> puedes hacer zoom.</p>
                         <p><span class="key">Esc</span> para ver un overview de la presentación.</p>
                         <p><span class="key">d</span> para mostrar las notas.</p>
+                    </section>
+                    <section>
+                        <p>Esta presentación esta realizada con <a href="https://github.com/hakimel/reveal.js">reveal.js</a>
+                            de <a href="http://hakim.se/">Hakim El Hattab</a></p>
+                        
                     </section>
                 </section>
                 <section>
@@ -178,16 +192,19 @@
                     <blockquote cite="http://www.php.net/manual/es/intro-whatis.php">
                         PHP (acrónimo de PHP: Hypertext Preprocessor) es un lenguaje 
                         de código abierto muy popular especialmente adecuado para 
-                        desarrollo web y que puede ser incrustado en HTML. 
+                        desarrollo web y que puede ser incrustado en HTML.
                     </blockquote>
                     <br/>
                     <p class="fragment fade-in">Interpretado y No tipado</p>
                 </section>
                 <section>
+                    <h2>Arquitectura</h2>
+                        <figure><img src="img/arquitectura.jpg" title="Arquitectura apache php mysql"/></figure>
+                </section>
+                <section>
                     <h2>¿Por qué usarlo?</h2>
                     <ol>
                         <li class="fragment fade-in">Realmente facil de aprender</li>
-                        <li class="fragment fade-in">Barato</li>
                         <li class="fragment fade-in">Open Source</li>
                         <li class="fragment fade-in">Portable</li>
                         <li class="fragment fade-in">Soporta POO y la mayoría de SGBD</li>
@@ -240,7 +257,7 @@
                 </section>
                 <section>
                     <h2>Hola mundo</h2>
-                    <pre><code>&lt;!DOCTYPE html&gt;
+                    <pre contenteditable><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta http-equiv="Content-Type" 
@@ -257,7 +274,7 @@
                 </section>
                 <section>
                     <h2>Comentarios</h2>
-                    <pre><code>&lt;?php 
+                    <pre contenteditable><code>&lt;?php 
     //comentarios de  linea
     # otra forma de comentar
     /*
@@ -275,7 +292,7 @@
                 </section>
                 <section>
                     <h2>Variables</h2>
-                    <pre><code contenteditable>&lt;?php
+                    <pre contenteditable><code>&lt;?php
             $a; // no inicializada(NULL)
             echo gettype($a);
             $a = 10; //le asignamos un entero
@@ -297,16 +314,13 @@ object</pre>
                 </section>
                 <section>
                     <h2>Constantes</h2>
-                    <pre><code contenteditable>&lt;?php
+                    <pre contenteditable><code>&lt;?php
             define(PI, 3.14);
-            const TITLE = "PHP1h";
             echo PI;
-            echo TITLE;
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
                     <pre class="result" contenteditable>
-3.14
-PHP1h</pre>
+3.14</pre>
                     <p>También existen las 
                         <a href="http://es2.php.net/manual/en/language.constants.predefined.php">constantes Mágicas.</a>
                     </p>
@@ -322,7 +336,7 @@ PHP1h</pre>
 
                 <section>
                     <h2>Cadenas de carácteres</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
             $a = &quot; &lt;b&gt;hola&lt;/b&gt; &quot;;
 
             echo $a . '-&gt;' . htmlspecialchars ($a).&quot;\n&quot;;
@@ -331,14 +345,14 @@ PHP1h</pre>
             echo 'Logitud sin espacios:'.strlen(trim($a)).&quot;\n&quot;;
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
-                    <pre class="result">
-hola -> <b>hola</b> 
+                    <pre class="result" contenteditable>
+<b>hola</b> -> hola
 Logitud: 13
 Logitud aplicando trim: 11</pre>
                 </section>
                 <section>
                     <h2>Comillas simples y dobles</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
     $foo=10;
     echo "valor: $foo \n";
     echo 'valor: $foo \n';
@@ -351,7 +365,7 @@ valor: $foo \n</pre>
                 <section>
                     <h2>Comparaciones</h2>
                     <h4>¿igual o idéntico?</h4>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
     $a=10;
     $b='10';
 
@@ -370,7 +384,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
 
                 <section>
                     <h2>Arrays</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
     $items[] = 1; // indice implicito
     $items[5] = 2; // indice explicito
     $items['key'] = 3; // asociativo
@@ -384,7 +398,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
 
                 <section>
                     <h2>Funciones de Arrays</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
     // JSON (JavaScript Object Notation)
     // transforma un cadena de caracteres en noctacion json
     // a un array asociativo
@@ -426,7 +440,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>if, else, elseif/else if</h3>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 $a=0;
 if($a){
     echo $a;
@@ -447,7 +461,7 @@ Good afternoon!</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>Switch</h3>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 // dia de la semana abreviado en tres letras
 $dia = date('D');
 $dia = strtoupper($dia): // lo paso a mayusculas
@@ -471,7 +485,7 @@ Domingo</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>Bucles</h3>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 $array=range(0,1000); // crea un array de 0 a 1000
 $len=count($array); // numero de elementos del array
 
@@ -494,7 +508,7 @@ foreach ($array as $key => $value){
                     <h2>Estructuras de control</h2>
                     <h3>include, include_once</h3>
                     <h3>require, require_once</h3>
-                    <pre><code contenteditable>&lt;?php
+                    <pre contenteditable><code>&lt;?php
     require_once 'connect_DB.php';
 ?&gt;</code></pre>
                     <ul>
@@ -506,7 +520,7 @@ foreach ($array as $key => $value){
                 </section>
                 <section>
                     <h2>Objetos</h2>
-                    <pre><code>&lt;?php
+                    <pre  contenteditable><code>&lt;?php
 class Animal {
     var $patas;
     private $habitat;
@@ -548,7 +562,7 @@ echo 'El gato '.$michifu->getNombre().' tiene '.$michifu->patas.
                 <section>
                     <h2>Formularios</h2>
 
-                    <pre><code>&lt;form method="post" action="&lt;?php echo $_SERVER['PHP_SELF'] ?&gt;"&gt;
+                    <pre  contenteditable><code>&lt;form method="post" action="&lt;?php echo $_SERVER['PHP_SELF'] ?&gt;"&gt;
  &lt;input name="var" /&gt;
  &lt;input type="submit" /&gt;
 &lt;/form&gt;
@@ -591,7 +605,7 @@ echo 'El gato '.$michifu->getNombre().' tiene '.$michifu->patas.
 
                 <section>
                     <h2>Preparación</h2>
-                    <pre><code>&lt;?php
+                    <pre  contenteditable><code>&lt;?php
 $tablaSQL = &lt;&lt;&lt;TABLASQL
     CREATE TABLE IF NOT EXISTS usuarios (
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -617,7 +631,7 @@ define('DB_CHARSET', 'utf8');
 
                 <section>
                     <h2>Extensión mysql</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 // conexion
 $mysql = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)
         or die("Error while connecting to database");
@@ -650,7 +664,7 @@ unset($matriz);
                 </section>
                 <section>
                     <h2>PDO MySQL</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 // conexion
 $opt = array(
     PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
@@ -682,7 +696,7 @@ unset($matriz);
                 </section>
                 <section>
                     <h2>Extensión mysqli</h2>
-                    <pre><code>&lt;?php
+                    <pre contenteditable><code>&lt;?php
 // conexion
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if ($mysqli-&gt;connect_errno) {
@@ -735,7 +749,7 @@ Array
 
                 <section>
                     <h2>Sesiones</h2>
-                    <pre><code>&lt;?php // Cada vez que visitamos la página se aumenta el contador.
+                    <pre contenteditable><code>&lt;?php // Cada vez que visitamos la página se aumenta el contador.
 // iniciamos la sesion
 session_start();
 // si la variable de sesion counter no esta definida
@@ -817,7 +831,7 @@ if (!isset($_SESSION['counter'])) {
                 </section>
                <!-- <section>
                     <h2>Ajax sin jQuery</h2>
-                    <pre><code>
+                    <pre contenteditable><code>
 function inicializa_xhr() {
   if(window.XMLHttpRequest) {
     return new XMLHttpRequest();
@@ -835,10 +849,20 @@ if(peticion_http) {
   peticion_http.send(null);
 }</code></pre>
                 </section>-->
-                
+                <section>
+                    <h2  class="fade-in">Ajax con jQuery (HTML)</h2>
+                    <pre contenteditable><code>&lt;form&gt;
+    &lt;fieldset&gt;&lt;legend&gt;AJAX&lt;/legend&gt;
+        &lt;label for=&quot;offset&quot;&gt;&lt;/label&gt;
+        &lt;input id=&quot;offset&quot; type=&quot;number&quot; value =&quot;4&quot;/&gt;
+        &lt;input type=&quot;submit&quot; id=&quot;gettime&quot; value=&quot;Get Time&quot;&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;div id=&quot;resquest&quot;&gt;&lt;/div&gt;</code></pre>
+                </section>
    <section>
                     <h2>Ajax con jQuery (PHP)</h2>
-<pre><code>
+<pre contenteditable><code>
 &lt;?php
 function isAJAX() {
     return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; 
@@ -859,7 +883,7 @@ if (isAJAX()) {
                 </section>
                 <section>
                     <h2  class="fade-in">Ajax con jQuery (JavaScript)</h2>
-                    <pre><code>&lt;!-- Utiliza jQuery del CDN de Google. Utiliza el jQuery local si es necesario --&gt;
+                    <pre contenteditable><code>&lt;!-- Utiliza jQuery del CDN de Google. Utiliza el jQuery local si es necesario --&gt;
 &lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;!window.jQuery &amp;&amp; document.write('&lt;script src=&quot;js/jquery-1.8.3.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
 &lt;script&gt;
@@ -888,17 +912,6 @@ if (isAJAX()) {
         */
     }
 &lt;/script&gt;</code></pre>
-                </section>
-                <section>
-                    <h2  class="fade-in">Ajax con jQuery (HTML)</h2>
-                    <pre><code>&lt;form&gt;
-    &lt;fieldset&gt;&lt;legend&gt;AJAX&lt;/legend&gt;
-        &lt;label for=&quot;offset&quot;&gt;&lt;/label&gt;
-        &lt;input id=&quot;offset&quot; type=&quot;number&quot; value =&quot;4&quot;/&gt;
-        &lt;input type=&quot;submit&quot; id=&quot;gettime&quot; value=&quot;Get Time&quot;&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;
-&lt;div id=&quot;resquest&quot;&gt;&lt;/div&gt;</code></pre>
                 </section>
                 <section>
                     <h2  class="fade-in">¿Preguntas?</h2>
