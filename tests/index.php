@@ -241,6 +241,7 @@ session_start();
 </form>
             <?php
             //Formularios
+            echo $_POST['var'];
             echo 'Por GET: ' . $_GET['var'] . '<br/>';
             echo 'Por POST sin filtrar: ' . $_POST['var'] . '<br/>';
             echo 'Por POST filtrado con htmlspecialchars: ' . htmlspecialchars($_POST['var']) . '<br/>';
@@ -405,6 +406,7 @@ TABLASQL;
                 //si ya estaba definida la incrementamos
                 $_SESSION['counter']++;
             }
+            session_name();
             echo 'visitas: ' . $_SESSION['counter'] . '<br/>';
             ?>
 <h2>AJAX</h2>

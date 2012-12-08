@@ -165,26 +165,33 @@
                     <h2>Índice de contenidos</h2>
                     <ol class="twocols">
                         <li><a href="#/2">¿Qué es PHP?</a></li>
-                        <li><a href="#/3">¿Por qué usarlo?</a></li>
-                        <li><a href="#/4">Instalación</a></li>
-                        <li><a href="#/5">IDEs</a></li>
-                        <li><a href="#/6">Otras herramientas útiles</a></li>
-                        <li><a href="#/7">Hola mundo</a></li>
-                        <li><a href="#/8">Comentarios</a></li>
-                        <li><a href="#/9">Variables</a></li>
-                        <li><a href="#/10">Constantes</a></li>
-                        <li><a href="#/11">Operadores</a></li>
-                        <li><a href="#/12">Cadenas de caracteres</a></li>
-                        <li><a href="#/13">Arrays</a></li>
-                        <li><a href="#">Funciones</a></li>
-                        <li><a href="#">Formularios</a></li>
-                        <li><a href="#">Formularios seguros</a></li>
-                        <li><a href="#">Mysql</a></li>
-                        <li><a href="#">Mysql de forma segura</a></li>
-                        <li><a href="#">Include y Require</a></li>
-                        <li><a href="#">Ajax</a></li>
-                        <li><a href="#">jQuery y Ajax</a></li>
-                        <li><a href="#">Aplicación de ejemplo</a></li>
+                        <li><a href="#/3">Arquitectura</a></li>
+                        <li><a href="#/4">¿Por qué usarlo?</a></li>
+                        <li><a href="#/5">Instalación</a></li>
+                        <li><a href="#/6">IDEs</a></li>
+                        <li><a href="#/7">Otras herramientas</a></li>
+                        <li><a href="#/8">Hola mundo</a></li>
+                        <li><a href="#/9">Comentarios</a></li>
+                        <li><a href="#/10">Variables</a></li>
+                        <li><a href="#/11">Constantes</a></li>
+                        <li><a href="#/12">Operadores</a></li>
+                        <li><a href="#/13">Cadenas de caracteres</a></li>
+                        <li><a href="#/14">Las comillas</a></li>
+                        <li><a href="#/15">Comparaciones</a>
+                        <li><a href="#/16">Arrays</a></li>
+                        <li><a href="#/17">Funciones de Arrays</a></li>
+                        <li><a href="#/18">Variables superglobales</a></li>
+                        <li><a href="#19">Estructuras de control</a></li>
+                        <li><a href="#23">Objetos</a></li>
+                        <li><a href="#24">Formularios</a></li>
+                        <li><a href="#25">APIs para MySQL</a></li>
+                        <li><a href="#31">Sesiones</a></li>
+                        <li><a href="#32">Para seguir aprendiendo</a></li>
+                        <li><a href="#33">¿Usar frameworks?</a></li>
+                        <li><a href="#34">Symfony2</a></li>
+                        <li><a href="#35">Ajax</a></li>
+                        <li><a href="#38">Ejemplo de Ajax</a></li>
+                        <li><a href="#41">Fin</a></li>
                     </ol>
                 </section>
                 <section>
@@ -204,11 +211,11 @@
                 <section>
                     <h2>¿Por qué usarlo?</h2>
                     <ol>
-                        <li class="fragment fade-in">Realmente facil de aprender</li>
-                        <li class="fragment fade-in">Open Source</li>
-                        <li class="fragment fade-in">Portable</li>
-                        <li class="fragment fade-in">Soporta POO y la mayoría de SGBD</li>
-                        <li class="fragment fade-in">Existen un monton de librerias, frameworks y CMS</li>
+                        <li class="fragment fade-in">Realmente facil de aprender.</li>
+                        <li class="fragment fade-in">Open Source.</li>
+                        <li class="fragment fade-in">Portable.</li>
+                        <li class="fragment fade-in">Soporta POO y la mayoría de SGBD.</li>
+                        <li class="fragment fade-in">Existen un monton de librerias, frameworks y CMS.</li>
                     </ol>
                     <aside class="notes">Barato -> La mayoría de los servidores compartidos solo soportan php
                         Librerias -> ya existen un monton de librerias para cualquier cosa. Ej: hacer pdf's
@@ -224,16 +231,16 @@
                     <ul>
                         <li>Instalar <a href="http://php.net/">PHP</a>, 
                             <a href="http://www.apache.org/">Apache</a>, 
-                            <a href="http://www.mysql.com/">Mysql</a> por separado
+                            <a href="http://www.mysql.com/">Mysql</a> por separado.
                         </li>
                         <li>Servidor web embebido.<br/> <code>php -S localhost:8080</code></li>
                         <li>
                             <a href="http://www.apachefriends.org/es/xampp.html">XAMPP</a>,
                             <a href="http://www.linuxhispano.net/2011/04/08/instalar-lamp-en-ubuntu-11-04/">LAMP</a>,
                             <a href="http://www.wampserver.com/en/">WAMP</a> <a href="http://www.easyphp.org/">(EasyPHP)</a>,
-                            <a href="http://www.mamp.info">MAMP</a>
+                            <a href="http://www.mamp.info">MAMP</a>.
                         </li>
-                        <li>Servidor portable: MoWeS, <a href="http://www.server2go-web.de/">server2go</a></li>
+                        <li>Servidor portable: MoWeS, <a href="http://www.server2go-web.de/">server2go</a>.</li>
                     </ul>
                 </section>
                 <section>
@@ -424,6 +431,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
                     <h2>Variables superglobales</h2>
                     <ul>
                         <li><strong>$GLOBALS</strong></li>
+                        <li><strong>$_SERVER</strong></li>
                         <li><strong>$_GET</strong></li>
                         <li><strong>$_POST</strong></li>
                         <li><strong>$_FILES</strong></li>
@@ -573,7 +581,6 @@ echo 'El gato '.$michifu->getNombre().' tiene '.$michifu->patas.
                     <p class="fragment fade-in">¡¡Cuidado!! <br/>
                         <span class="fragment fade-in">¿Qué pasaría si meto codigo HTML?</span><br/>
                         <span class="fragment fade-in">¿Y si meto codigo JavaScript?</span><br/>
-                        <span class="fragment fade-in">¿Y PHP?</span>
                     </p>
 
                     <pre class="fragment fade-in"><code>&lt;?php
@@ -766,15 +773,10 @@ if (!isset($_SESSION['counter'])) {
                     <ul>
                         <li><code>session_destroy()</code> para destruir la sesión.</li>
                         <li><code>session_regenerate_id()</code> regenera el id de sesión.</li>
+                        <li><code>session_name();</code> fija el nombre de la session.</li>
                     </ul>
                 </section>
-                <section>
-                    <h2>Aplicacion de ejemplo</h2>
-                    <h3>Librerias</h3>
-                    <aside  class="notes">No he querido usar frameworks, pero si he usado 
-                        librerías para proteger de algunos ataques la aplicación
-                    </aside>
-                </section>
+
                 <section>
                     <h2>Para seguir aprendiendo</h2>
                     <ul>
@@ -862,8 +864,7 @@ if(peticion_http) {
                 </section>
    <section>
                     <h2>Ajax con jQuery (PHP)</h2>
-<pre contenteditable><code>
-&lt;?php
+<pre contenteditable><code>&lt;?php
 function isAJAX() {
     return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; 
         strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
@@ -875,7 +876,7 @@ if (isAJAX()) {
     $date = new DateTime();
     $date-&gt;modify (&quot;+{$offset} hours&quot;);
     $info['time'] = $date-&gt;format('H:i:s');
-    $info['msg'] = &quot;Es una petici&Atilde;&sup3;n AJAX!&quot;;
+    $info['msg'] = &quot;Es una petición AJAX!&quot;;
     echo json_encode($info);
     exit();
 }
