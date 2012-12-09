@@ -52,9 +52,7 @@ session_start();
 <h2>Constantes</h2>
             <?php
             define(PI, 3.14);
-            const TITLE = "PHP1h";
             echo PI . "\n";
-            echo TITLE . "\n";
             ?>
 <h2>Cadenas</h2>
             <?php
