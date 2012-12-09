@@ -241,11 +241,11 @@ session_start();
 </form>
             <?php
             //Formularios
-            echo $_POST['var'];
-            echo 'Por GET: ' . $_GET['var'] . '<br/>';
-            echo 'Por POST sin filtrar: ' . $_POST['var'] . '<br/>';
+           // echo 'Por GET sin filtrar:: ' . $_GET['var'] . '<br/>';
+           // echo 'Por POST sin filtrar: ' . $_POST['var'] . '<br/>';
             echo 'Por POST filtrado con htmlspecialchars: ' . htmlspecialchars($_POST['var']) . '<br/>';
             echo 'Por POST filtrado con strip_tags: ' . strip_tags($_POST['var']) . '<br/>';
+            echo 'Por GET filtrado con strip_tags: ' . strip_tags($_GET['var']) . '<br/>';
             ?>
 
 <h2>Objetos</h2>
