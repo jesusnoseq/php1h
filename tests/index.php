@@ -210,7 +210,7 @@ session_start();
 
 <h2>Superglobales</h2>
             <?php
-            echo '<h3>$_SERVER<h3/>';
+            echo '<h3>$GLOBALS<h3/>';
             print_r($GLOBALS);
             echo '<h3>$_SERVER<h3/>';
             print_r($_SERVER);

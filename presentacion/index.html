@@ -81,7 +81,6 @@
                 border-radius: 4px;
                 padding: 2em 1.5em;
                 color: rgba(0,0,0, .8);
-                text-shadow: 0 1px 0 #fff;
                 line-height: 1.5;
                 margin: 60px auto;
             }
@@ -95,12 +94,12 @@
                 bottom: 15px;
                 left: 10px;
                 width: 50%; 
-                top: 80%;
+                top: 50%;
                 max-width:400px;
-                background: rgba(0, 0, 0, 0.7); 
-                -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
-                -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-                box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+                background: rgba(0, 0, 0, 0.5); 
+                -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.5);   
+                -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
                 -webkit-transform: rotate(-3deg);    
                 -moz-transform: rotate(-3deg);   
                 -o-transform: rotate(-3deg);
@@ -532,6 +531,28 @@ foreach ($array as $key => $value){
                         <li><strong>require</strong> igual que include pero si falla produce un error que para la ejecución del script.</li>
                         <li><strong>require_once</strong> igual que require pero solo añade el fichero una vez.</li>
                     </ul>
+                </section>
+                <section>
+                    <h2>Estructuras de control</h2>
+                    <h3>Funciones</h3>
+                                        <pre contenteditable><code>&lt;?php
+function foo() {    return "poo";   }
+
+function foo2($bar = "Por defecto") {    return $bar;   }
+
+function bar(&$bar) {    $bar = "foo";  }
+
+echo foo();
+echo foo2();
+$var = "var";
+bar($var);
+echo $var;
+?&gt;</code></pre>
+<h4>Resultado</h4>
+<pre class="result">
+poo
+Por defecto
+foo</pre>
                 </section>
                 <section>
                     <h2>Objetos</h2>
