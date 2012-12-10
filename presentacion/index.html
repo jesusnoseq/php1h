@@ -352,14 +352,14 @@ object</pre>
                     <pre contenteditable><code>&lt;?php
             $a = &quot; &lt;b&gt;hola&lt;/b&gt; &quot;;
 
-            echo $a . '-&gt;' . htmlspecialchars ($a).&quot;\n&quot;;
+            echo $a . '-&gt; ' . htmlspecialchars ($a).&quot;\n&quot;;
             
             echo 'Logitud: '.strlen($a).&quot;\n&quot;;
             echo 'Logitud sin espacios:'.strlen(trim($a)).&quot;\n&quot;;
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
                     <pre class="result" contenteditable>
-<b>hola</b> -> hola
+<b>hola</b> -&gt; &lt;b&gt;hola&lt;/b&gt;
 Logitud: 13
 Logitud aplicando trim: 11</pre>
                 </section>
@@ -413,7 +413,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
                     <h2>Funciones de Arrays</h2>
                     <pre contenteditable><code>&lt;?php
     // JSON (JavaScript Object Notation)
-    // transforma un cadena de caracteres en noctacion json
+    // transforma un cadena de caracteres en noctacion JSON
     // a un array asociativo
     $items= json_decode('{"name":"root", "password":"123456"}'
         ,true);
@@ -692,7 +692,7 @@ mysql_free_result($result);
 mysql_close($mysql);
 unset($matriz);
 ?&gt;</code></pre>
-                    <p class="fragment fade-in">¿ Y si <code>$_GET['pass']</code> vale <code>'%'</code> ?
+                    <p class="fragment fade-in">¿ Y si <code>$_GET['pass']</code> vale <code>' OR ''='</code> ?
                         <span class="fragment fade-in"> Hay que filtrar</span>
                     </p>
                     <code class="fragment fade-in">$pass=mysql_real_escape_string($_GET['pass']);</code>
@@ -716,7 +716,7 @@ try {
 // consulta
 $sql = "select id, name, password 
         from usuarios 
-        where password like ".$pdo->quote($_GET['pass']);
+        where password = ".$pdo->quote($_GET['pass']);
 $result = $pdo-&gt;query($sql);
 
 // resultado
@@ -744,7 +744,7 @@ if ($mysqli-&gt;connect_errno) {
 $pass = $mysqli-&gt;real_escape_string($_GET['pass']);
 $sql = "select id, name, password 
         from usuarios 
-        where password like '$pass'";
+        where password = '$pass'";
 $result = $mysqli-&gt;query($sql);
 
 // resultados

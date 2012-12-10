@@ -48,6 +48,8 @@ session_start();
             echo gettype($a) . "\n";
             $a = new DOMEntity(); // ahora es un objeto
             echo gettype($a) . "\n";
+            
+            echo (10+'10'). "\n";
             ?>
 <h2>Constantes</h2>
             <?php
@@ -57,8 +59,7 @@ session_start();
 <h2>Cadenas</h2>
             <?php
             $a = " <b>hola</b> ";
-            echo $a . '->' . htmlspecialchars($a) . "\n";
-
+            echo $a .' -> ' . htmlspecialchars($a) . "\n";
             echo 'Logitud: ' . strlen($a) . "\n";
             echo 'Logitud aplicando trim: ' . strlen(trim($a)) . "\n";
             ?>
@@ -318,7 +319,7 @@ TABLASQL;
 
             // ¡Cuidado!
             //  el dato puede venir de un formulario por ejemplo
-            // $pass='%'; 
+            // $pass="\' OR \'\'=\'"; 
             // $sql="select id, name, password from usuarios where password like '$pass'";
 
             $pass = mysql_real_escape_string('123');
@@ -352,7 +353,7 @@ TABLASQL;
             $pass = $pdo->quote('123');
             $sql = "select id, name, password 
                     from usuarios 
-                    where password like " . $pdo->quote('123');
+                    where password = " . $pdo->quote('123');
             $result = $pdo->query($sql);
 
             $matriz = $result->fetchAll(PDO::FETCH_ASSOC); /* PDO::FETCH_CLASS */
@@ -374,7 +375,7 @@ TABLASQL;
             $pass = $mysqli->real_escape_string('123');
             $sql = "select id, name, password 
                     from usuarios 
-                    where password like '" . $pass . "';";
+                    where password = '" . $pass . "';";
             //$result = mysqli_query($mysqli, $mysqli);
             $result = $mysqli->query($sql);
 
@@ -406,8 +407,10 @@ TABLASQL;
             }
             session_name();
             echo 'visitas: ' . $_SESSION['counter'] . '<br/>';
+
             ?>
 <h2>AJAX</h2>
+
 <?php include 'ajaxExample.php'; ?>
         </pre>
     </body>
