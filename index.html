@@ -270,7 +270,7 @@
                 <section>
                     <h2>Hola mundo</h2>
                     <h5>Fichero con extensión .php</h5>
-                    <pre contenteditable><code>&lt;!DOCTYPE html&gt;
+                    <pre><code contenteditable>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;meta http-equiv="Content-Type" 
@@ -287,7 +287,7 @@
                 </section>
                 <section>
                     <h2>Comentarios</h2>
-                    <pre contenteditable><code>&lt;?php 
+                    <pre><code contenteditable>&lt;?php 
     //comentarios de  linea
     # otra forma de comentar
     /*
@@ -305,7 +305,7 @@
                 </section>
                 <section>
                     <h2>Variables</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
             $a; // no inicializada(NULL)
             echo gettype($a);
             $a = 10; //le asignamos un entero
@@ -318,7 +318,7 @@
             echo gettype($a);
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
-                    <pre class="result">
+                    <pre contenteditable class="result">
 NULL
 integer
 string
@@ -327,7 +327,7 @@ object</pre>
                 </section>
                 <section>
                     <h2>Constantes</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
             define(PI, 3.14);
             echo PI;
 ?&gt;</code></pre>
@@ -349,7 +349,7 @@ object</pre>
 
                 <section>
                     <h2>Cadenas de carácteres</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
             $a = &quot; &lt;b&gt;hola&lt;/b&gt; &quot;;
 
             echo $a . '-&gt; ' . htmlspecialchars ($a).&quot;\n&quot;;
@@ -365,20 +365,20 @@ Logitud aplicando trim: 11</pre>
                 </section>
                 <section>
                     <h2>Comillas simples y dobles</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
     $foo=10;
     echo "valor: $foo \n";
     echo 'valor: $foo \n';
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
-                    <pre class="result">
+                    <pre contenteditable class="result">
 valor: 10
 valor: $foo \n</pre>
                 </section>
                 <section>
                     <h2>Comparaciones</h2>
                     <h4>¿Igual o idéntico?</h4>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
     $a=10;
     $b='10';
 
@@ -388,7 +388,7 @@ valor: $foo \n</pre>
     echo 'Y ahora ¿son idénticos con ===? '. ($b===$a);
 ?&gt;</code></pre>
                     <h4>Resultado</h4>
-                    <pre class="result">
+                    <pre contenteditable class="result">
 ¿Son iguales con ==? 1
 ¿Son idénticos con ===?
 Y ahora ¿son idénticos con ===? 1</pre>
@@ -397,7 +397,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
 
                 <section>
                     <h2>Arrays</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
     $items[] = 1; // indice implicito
     $items[5] = 2; // indice explicito
     $items['key'] = 3; // asociativo
@@ -411,7 +411,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
 
                 <section>
                     <h2>Funciones de Arrays</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
     // JSON (JavaScript Object Notation)
     // transforma un cadena de caracteres en noctacion JSON
     // a un array asociativo
@@ -454,7 +454,7 @@ Y ahora ¿son idénticos con ===? 1</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>if, else, elseif/else if</h3>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 $a=0;
 if($a){
     echo $a;
@@ -475,7 +475,7 @@ Good afternoon!</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>Switch</h3>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 // dia de la semana abreviado en tres letras
 $dia = date('D');
 $dia = strtoupper($dia): // lo paso a mayusculas
@@ -499,7 +499,7 @@ Domingo</pre>
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>Bucles</h3>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 $array=range(0,1000); // crea un array de 0 a 1000
 $len=count($array); // numero de elementos del array
 
@@ -522,7 +522,7 @@ foreach ($array as $key => $value){
                     <h2>Estructuras de control</h2>
                     <h3>include, include_once</h3>
                     <h3>require, require_once</h3>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
     require_once 'connect_DB.php';
 ?&gt;</code></pre>
                     <ul>
@@ -535,7 +535,7 @@ foreach ($array as $key => $value){
                 <section>
                     <h2>Estructuras de control</h2>
                     <h3>Funciones</h3>
-                                        <pre contenteditable><code>&lt;?php
+                                        <pre><code contenteditable>&lt;?php
 function foo() {    return "poo";   }
 
 function foo2($bar = "Por defecto") {    return $bar;   }
@@ -666,7 +666,7 @@ define('DB_CHARSET', 'utf8');
 
                 <section>
                     <h2>Extensión mysql</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 // conexion
 $mysql = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)
         or die("Error while connecting to database");
@@ -699,7 +699,7 @@ unset($matriz);
                 </section>
                 <section>
                     <h2>PDO MySQL</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 // conexion
 $opt = array(
     PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
@@ -731,7 +731,7 @@ unset($matriz);
                 </section>
                 <section>
                     <h2>Extensión mysqli</h2>
-                    <pre contenteditable><code>&lt;?php
+                    <pre><code contenteditable>&lt;?php
 // conexion
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 if ($mysqli-&gt;connect_errno) {
@@ -784,7 +784,7 @@ Array
 
                 <section>
                     <h2>Sesiones</h2>
-                    <pre contenteditable><code>&lt;?php // Cada vez que visitamos la página se aumenta el contador.
+                    <pre><code contenteditable>&lt;?php // Cada vez que visitamos la página se aumenta el contador.
 // iniciamos la sesion
 session_start();
 // si la variable de sesion counter no esta definida
@@ -860,7 +860,7 @@ if (!isset($_SESSION['counter'])) {
                 </section>
                <!-- <section>
                     <h2>Ajax sin jQuery</h2>
-                    <pre contenteditable><code>
+                    <pre><code>
 function inicializa_xhr() {
   if(window.XMLHttpRequest) {
     return new XMLHttpRequest();
@@ -880,7 +880,7 @@ if(peticion_http) {
                 </section>-->
                 <section>
                     <h2  class="fade-in">Ajax con jQuery (HTML)</h2>
-                    <pre contenteditable><code>&lt;form&gt;
+                    <pre><code contenteditable>&lt;form&gt;
     &lt;fieldset&gt;&lt;legend&gt;AJAX&lt;/legend&gt;
         &lt;label for=&quot;offset&quot;&gt;&lt;/label&gt;
         &lt;input id=&quot;offset&quot; type=&quot;number&quot; value =&quot;4&quot;/&gt;
@@ -891,7 +891,7 @@ if(peticion_http) {
                 </section>
    <section>
                     <h2>Ajax con jQuery (PHP)</h2>
-<pre contenteditable><code>&lt;?php
+<pre><code contenteditable>&lt;?php
 function isAJAX() {
     return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) &amp;&amp; 
         strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 
@@ -911,7 +911,7 @@ if (isAJAX()) {
                 </section>
                 <section>
                     <h2  class="fade-in">Ajax con jQuery (JavaScript)</h2>
-                    <pre contenteditable><code>&lt;!-- Utiliza jQuery del CDN de Google. Utiliza el jQuery local si es necesario --&gt;
+                    <pre><code contenteditable>&lt;!-- Utiliza jQuery del CDN de Google. Utiliza el jQuery local si es necesario --&gt;
 &lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;!window.jQuery &amp;&amp; document.write('&lt;script src=&quot;js/jquery-1.8.3.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
 &lt;script&gt;
