@@ -89,13 +89,12 @@ session_start();
             $items[] = 1;
             $items[5] = 2;
             $items['key'] = 3;
-            $items[] = array(true, null, 23, "bla");
+            $items[] = array(true, null, 23, "bla"); // en el indice 6
             $items['key'] = array('key1' => 'valor1', 0 => "woalaaaaa");
 
             echo 'Elemento $items [\'key\'][0] = ' . $items ['key'][0] . "\n";
 
             $items[] = json_decode('{"name":"root", "password":"123456"}', true);
-
 
             // mas funciones en http://es1.php.net/manual/es/book.array.php
             // transforma un cadena de caracteres en noctacion json a un array asociativo
@@ -240,8 +239,8 @@ session_start();
 </form>
             <?php
             //Formularios
-           // echo 'Por GET sin filtrar:: ' . $_GET['var'] . '<br/>';
-           // echo 'Por POST sin filtrar: ' . $_POST['var'] . '<br/>';
+            echo 'Por GET sin filtrar:: ' . $_GET['var'] . '<br/>';
+            echo 'Por POST sin filtrar: ' . $_POST['var'] . '<br/>';
             echo 'Por POST filtrado con htmlspecialchars: ' . htmlspecialchars($_POST['var']) . '<br/>';
             echo 'Por POST filtrado con strip_tags: ' . strip_tags($_POST['var']) . '<br/>';
             echo 'Por GET filtrado con strip_tags: ' . strip_tags($_GET['var']) . '<br/>';
